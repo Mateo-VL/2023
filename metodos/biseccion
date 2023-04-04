@@ -1,0 +1,60 @@
+from pylab import *
+import math
+
+
+def bisection(f, a, b, tol=1e-4, iters_max=1000):
+    ''' Implementación del método de la bisección
+
+    Parameters
+
+    f : función
+      función a resolver, toma un argumento y devuelve un argumento
+    a : float
+      límite inferior del intervalo inicial
+    b : float
+      límite superior del intervalo inicial
+    tol : float, opcional
+      Tolerancia al error. Default 1e-4
+    iters_max : int, opcional
+      Número de iteraciones máximas a realizar. Default 1000.
+
+    Returns
+      Aproximacion a x0 raíz de f. None si no se cumplen las hipótesis
+    '''
+
+    # Chequeo que se cumpla la hipótesis
+    if f(a)*f(b) > 0:
+        return None
+
+    # Itero el método
+    vals = []
+    for n in range(iters_max):
+        p0 = 0.5*(a + b)
+        vals.append(p0)
+        if f(p0)*f(a) > 0:
+            a = p0
+        else:
+            b = p0
+
+        # Me fijo si el resultado está dentro de mi tolerancia
+        if abs(f(p0)) < tol:
+            print('Iteraciones:', n)
+            return p0, vals
+
+    # Devuelvo valores en caso de no haber convergido en el número de iters
+    print('Iteraciones maximas alcanzadas')
+    return p0, vals
+
+  # Ejemplo 1
+
+
+math.pi
+
+# Ejemplo 1
+
+
+def f(x): return x**2 - 4*x + 4 - log(x)
+
+
+plot(x, f(x))
+axhline(0, ls='--')
