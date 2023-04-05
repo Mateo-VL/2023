@@ -34,7 +34,10 @@ list_t *list_new() {
 
 size_t list_length(const list_t *list) { return list->size; }
 
-bool list_is_empty(const list_t *list) { return true; }
+bool list_is_empty(const list_t *list) {
+  if(list == NULL) return true;
+  return list->size == 0;
+}
 
 bool list_insert_head(list_t *list, void *value) { return false; }
 
